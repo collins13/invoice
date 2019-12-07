@@ -152,7 +152,7 @@
         let count = 1;
         $(document).on('click', '#add_row', function(){
             count = count + 1;
-            $('#total_item').val(count);
+            var total_item = $('#total_item').val(count);
             var html_code = '';
             html_code += '<tr id="row_id_'+count+'">';
             html_code += '<td><span id="sr_no">'+count+'</span></td>'

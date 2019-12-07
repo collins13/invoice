@@ -8,6 +8,7 @@ use Invoice\Order;
 use Invoice\OrderItem;
 use DB;
 use Invoice\User;
+use Session;
 
 
 class OrderController extends Controller
@@ -19,10 +20,10 @@ class OrderController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
-    public function index()
+    public function get_data()
     {
         // if ($request->ajax()) {
         //     $data = Order::latest()->get();
@@ -37,14 +38,8 @@ class OrderController extends Controller
         //             ->rawColumns(['action'])
         //             ->make(true);
         // }
-        if(request()->ajax())
-        {
-            return datatables()->of(User::latest()->get())->make(true);
-        }
-      
-        return view('pages.create');
-        // $orders = Order::all();
-        // return view('home')->with('orders',$orders);
+        $invoices = Order::all();
+        return view('index', compact('invoices'));
     }
 
     /**
@@ -89,12 +84,19 @@ class OrderController extends Controller
         $order_total_tax3 = 0;
         $order_total_tax = 0;
         $order_total_after_tax = 0;
+        // generate code
+        $count = Order::where('order_no', 'LIKE', '%'. $request->order_receiver_name . '%')->count();
+        $str = $request->order_receiver_name;
+        $str1 = substr($str, 0, 2);
+        $code = str_pad ( $count  , 3 , "0",  STR_PAD_LEFT);
+        $invoice_code = $str1 . $code;
+
 
         try {
             $orders = new Order();
             $orders->order_receiver_name = $request->input('order_receiver_name');
             $orders->order_receiver_adress = $request->input('order_receiver_adress');
-            $orders->order_no = $request->input('order_no');
+            $orders->order_no = $invoice_code;
             $orders->order_date = $request->input('order_date');
             $orders->order_total_before_tax =  $order_total_before_tax;
             $orders->order_tax1 = $order_total_tax1;
@@ -129,6 +131,16 @@ $last_id = Order::latest()->first();
                $orderItem->save();
             }
             $order_total_tax = $order_total_tax1 + $order_total_tax2 +  $order_total_tax3;
+            $item = OrderItem::where('order_item_id', $last_id->id)->first();
+            $update = Order::where('id', $item->order_item_id)->update([
+            'order_total_before_tax' =>  $order_total_before_tax,
+            'order_tax1' => $order_total_tax1,
+            'order_tax2' => $order_total_tax2,
+            'order_tax3' => $order_total_tax3,
+            'order_total_tax' =>$order_total_tax,
+            'order_total_after_tax' => $order_total_after_tax,
+                ]);
+                Session::flash('success', 'invoice created successfuly');
             return redirect()->back();
             // for ($count=0; $count <$request->input('total_item') ; $count++) { 
                

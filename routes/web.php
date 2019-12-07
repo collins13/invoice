@@ -10,16 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('i-logout', 'HomeController@logout')->name('i-logout');
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 Route::get('/main', function () {
     return view('layouts.main');
 });
-Route::get('/index', function () {
-    return view('index');
-});
+Route::get('/index', 'OrderController@get_data')->name('index');
 Route::get('/backup', function () {
     return view('pages.backup');
 });
