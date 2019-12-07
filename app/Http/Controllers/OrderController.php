@@ -3,9 +3,12 @@
 namespace Invoice\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Redirect,Response;
 use Invoice\Order;
 use Invoice\OrderItem;
 use DB;
+use Invoice\User;
+
 
 class OrderController extends Controller
 {
@@ -16,13 +19,32 @@ class OrderController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     public function index()
     {
-        $orders = Order::all();
-        return view('home')->with('orders',$orders);
+        // if ($request->ajax()) {
+        //     $data = Order::latest()->get();
+        //     return Datatables::of($data)
+        //             ->addIndexColumn()
+        //             ->addColumn('action', function($row){
+   
+        //                    $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+     
+        //                     return $btn;
+        //             })
+        //             ->rawColumns(['action'])
+        //             ->make(true);
+        // }
+        if(request()->ajax())
+        {
+            return datatables()->of(User::latest()->get())->make(true);
+        }
+      
+        return view('pages.create');
+        // $orders = Order::all();
+        // return view('home')->with('orders',$orders);
     }
 
     /**
@@ -30,9 +52,23 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('/pages.create');
+        if ($request->ajax()) {
+            $data = Order::latest()->get();
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+   
+                           $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+     
+                            return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+      
+        return view('pages.create');
     }
 
     /**
@@ -54,45 +90,52 @@ class OrderController extends Controller
         $order_total_tax = 0;
         $order_total_after_tax = 0;
 
-        DB::beginTransaction();
         try {
             $orders = new Order();
             $orders->order_receiver_name = $request->input('order_receiver_name');
             $orders->order_receiver_adress = $request->input('order_receiver_adress');
             $orders->order_no = $request->input('order_no');
             $orders->order_date = $request->input('order_date');
-            $orders-> $order_total_before_tax = $request->input( $order_total_before_tax);
-            $orders->$order_tax1 = $request->input($order_total_tax1);
-            $orders->$order_tax2 = $request->input($order_total_tax2);
-            $orders->$order_tax3 = $request->input($order_total_tax3);
-            $orders->$order_total_tax = $request->input($order_total_tax);
-            $orders->$order_total_after_tax = $request->input($order_total_after_tax);
-            $orders->$order_datetime = $request->input(date("Y-m-d"));
+            $orders->order_total_before_tax =  $order_total_before_tax;
+            $orders->order_tax1 = $order_total_tax1;
+            $orders->order_tax2 = $order_total_tax2;
+            $orders->order_tax3 = $order_total_tax3;
+            $orders->order_total_tax = $order_total_tax;
+            $orders->order_total_after_tax = $order_total_after_tax;
+            // $orders->$order_datetime = $request->input(date("Y-m-d"));
             $orders->save();
-            $statement =  Order::tabel('orders')->insertGetId();
-            $order_id = $statement->first();
-
-            for ($count=0; $count <$request->input('total_item') ; $count++) { 
-               $order_total_before_tax = $order_total_after_tax + floatval(trim([$request->input('item_actual_amount'),$count]));
-               $order_total_tax1 = $order_total_tax1 + floatval(trim([$request->input('item_tax1_amount'), $count]));
-               $order_total_tax2 = $order_total_tax2 + floatval(trim([$request->input('item_tax2_amount'), $count]));
-               $order_total_tax3 = $order_total_tax3 + floatval(trim([$request->input('item_tax3_amount'), $count]));
-               $order_total_after_tax = $order_total_after_tax + floatval(trim([$request->input('item_final_amount'), $count]));
-           $orderItem = new OrderItem();
-           $orderItem->item_name = [$request->input('item_name'), $count];
-           $orderItem->order_item_qty = [$request->input('item_quantity'), $count];
-           $orderItem->order_item_price = [$request->input('item_price'), $count];
-           $orderItem->order_item_actual_amount = [$request->input('item_actual_amount'), $count];
-           $orderItem->oder_item_tax1_rate = [$request->input('item_tax1_rate'), $count];
-           $orderItem->order_item_tax1_amount = [$request->input('item_tax1_amount'), $count];
-           $orderItem->order_item_tax2_rate = [$request->input('item_tax2_rate'), $count];
-           $orderItem->order_item_tax2_amount = [$request->input('item_tax2_amount'), $count];
-           $orderItem->order_item_tax3_rate = [$request->input('item_tax3_rate'), $count];
-           $orderItem->order_item_tax3_amount = [$request->input('item_tax3_amount'), $count];
-           $orderItem->order_item_final_amount = [$request->input('item_final_amount'), $count];
+// dd($request->addmore);
+$last_id = Order::latest()->first();
+            foreach ($request->addmore as $key => $value) { 
+               $order_total_before_tax = $order_total_after_tax + floatval(trim($value['item_actual_amount']));
+               $order_total_tax1 = $order_total_tax1 + floatval(trim($value['item_tax1_amount']));
+               $order_total_tax2 = $order_total_tax2 + floatval(trim($value['item_tax2_amount']));
+               $order_total_tax3 = $order_total_tax3 + floatval(trim($value['item_tax3_amount']));
+               $order_total_after_tax = $order_total_after_tax + floatval(trim($value['item_final_amount']));
+               $orderItem = new OrderItem();
+               $orderItem->order_item_id = $last_id->id;
+            //    dd($orderItem->order_item_id);
+               $orderItem->item_name = $value['item_name'];
+               $orderItem->order_item_qty = $value['item_quantity'];
+               $orderItem->order_item_price = $value['item_price'];
+               $orderItem->order_item_actual_amount = $value['item_actual_amount'];
+               $orderItem->oder_item_tax1_rate = $value['item_tax1_rate'];
+               $orderItem->order_item_tax1_amount = $value['item_tax1_amount'];
+               $orderItem->order_item_tax2_rate = $value['item_tax2_rate'];
+               $orderItem->order_item_tax2_amount = $value['item_tax2_amount'];
+               $orderItem->order_item_tax3_rate = $value['item_tax3_rate'];
+               $orderItem->order_item_tax3_amount = $value['item_tax3_amount'];
+               $orderItem->order_item_final_amount = $value['item_final_amount'];
+               $orderItem->save();
             }
+            $order_total_tax = $order_total_tax1 + $order_total_tax2 +  $order_total_tax3;
+            return redirect()->back();
+            // for ($count=0; $count <$request->input('total_item') ; $count++) { 
+               
+          
+            // }
         } catch (\Throwable $th) {
-            //throw $th;
+            throw $th;
         }
 
         

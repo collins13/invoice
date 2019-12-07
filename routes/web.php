@@ -14,9 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/main', function () {
+    return view('layouts.main');
+});
+Route::get('/index', function () {
+    return view('index');
+});
+Route::get('/backup', function () {
+    return view('pages.backup');
+});
 
 Auth::routes();
 
 Route::get('/home', 'OrderController@index')->name('home');
-Route::get('/create', 'OrderController@create')->name('create');
-Route::post('/create', 'OrderController@store')->name('form.store');
+Route::post('/create', 'OrderController@store')->name('create');
+// Route::post('/create', 'OrderController@store')->name('form.store');

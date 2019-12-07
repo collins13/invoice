@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->string('order_no');
             $table->date('order_date');
             $table->string('order_receiver_name');
-            $table->text('order-receiver_adress');
+            $table->text('order_receiver_adress');
             $table->decimal('order_total_before_tax');
             $table->decimal('order_tax1');
             $table->decimal('order_tax2');

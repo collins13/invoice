@@ -1,5 +1,3 @@
-{{-- @extends('layouts.app') --}}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,21 +8,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>INVOICE</title>
+    <title>Dashboard</title>
 
     <!-- Custom fonts for this template-->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
-    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css">
-    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
-        href="/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-    <!-- Custom /styles for this template-->
-    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -33,8 +28,123 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        {{-- sidebar --}}
-        {{-- endsideba --}}
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-home"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Dashboard</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Interface
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Components</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Components:</h6>
+                        <a class="collapse-item" href="buttons.html">Buttons</a>
+                        <a class="collapse-item" href="cards.html">Cards</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Utilities</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Utilities:</h6>
+                        <a class="collapse-item" href="utilities-color.html">Colors</a>
+                        <a class="collapse-item" href="utilities-border.html">Borders</a>
+                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Addons
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Pages</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Login Screens:</h6>
+                        <a class="collapse-item" href="login.html">Login</a>
+                        <a class="collapse-item" href="register.html">Register</a>
+                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">Other Pages:</h6>
+                        <a class="collapse-item" href="404.html">404 Page</a>
+                        <a class="collapse-item" href="blank.html">Blank Page</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Charts</span></a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="tables.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Tables</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -164,8 +274,7 @@
                                     </div>
                                     <div class="font-weight-bold">
                                         <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been
-                                            having.</div>
+                                            problem I've been having.</div>
                                         <div class="small text-gray-500">Emily Fowler · 58m</div>
                                     </div>
                                 </a>
@@ -177,8 +286,7 @@
                                     </div>
                                     <div>
                                         <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them
-                                            sent to you?</div>
+                                            would you like them sent to you?</div>
                                         <div class="small text-gray-500">Jae Chun · 1d</div>
                                     </div>
                                 </a>
@@ -190,8 +298,7 @@
                                     </div>
                                     <div>
                                         <div class="text-truncate">Last month's report looks great, I am very happy with
-                                            the progress so
-                                            far, keep up the good work!</div>
+                                            the progress so far, keep up the good work!</div>
                                         <div class="small text-gray-500">Morgan Alvarez · 2d</div>
                                     </div>
                                 </a>
@@ -203,8 +310,7 @@
                                     </div>
                                     <div>
                                         <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people
-                                            say this to all dogs, even if they aren't good...</div>
+                                            told me that people say this to all dogs, even if they aren't good...</div>
                                         <div class="small text-gray-500">Chicken the Dog · 2w</div>
                                     </div>
                                 </a>
@@ -218,7 +324,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->name }}</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
                                 <img class="img-profile rounded-circle"
                                     src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
                             </a>
@@ -255,394 +361,52 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">New Invoice</h1>
-                        <a href="{{route('home')}}" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
-                                class="fas fa-arrow-left fa-sm text-white-50"></i> Go Back</a>
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        {{-- <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings (Annual)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks</div>
-                      <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                        </div>
-                        <div class="col">
-                          <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50"
-                              aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> --}}
-                    </div>
-
                     <!-- Content Row -->
 
                     <div class="row">
-                        <form action="{{route('form.store')}}" class="form" id="invoice_form" method="POST">
-                            {{ csrf_field() }}
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-responsive">
+                        <div class="container">
+                            <table class="table table-bordered data-table" id="user_table">
+                                <thead>
                                     <tr>
-                                        <td scope="col" colspan="2" align="center">
-                                            <h1 style="margin-top:10.5px;">Create Invoice</h1>
-                                        </td>
+                                        <th scope="col">#</th>
+                                        <th scope="col">name</th>
+                                        <th scope="col">email</th>
                                     </tr>
-                                    <tr>
-                                        <td colspan="2">
-                                            <div class="row">
-                                                <div class="form-group col-md-8">
-                                                    To, <br>
-                                                    <b>RECEIVER (BILL TO)</b><br>
-                                                    <input type="text" name="order_receiver_name"
-                                                        id="order_receiver_name" class="form-control input-sm"
-                                                        placeholder="Order Receiver name" required><br>
-                                                    <textarea name="order_receiver_adress" id="order_receiver_adress"
-                                                        cols="30" rows="10" class="form-control"
-                                                        placeholder="enter Billing adress"></textarea>
-                                                </div>
-                                                <div class="form-group col-md-4" style="margin-top:1.5em;">
-                                                    Reverse Charge<br />
-                                                    <input type="text" name="order_no" id="order_no"
-                                                        class="form-control input-sm" placeholder="Enter Order No"
-                                                        required><br>
-                                                    <input type="text" name="order_date" id="order_date"
-                                                        class="form-control input-sm" placeholder="select invoice date"
-                                                        readonly required>
-                                                    <script>
-                                                        $('#order_date').datepicker({
-                                                                        uiLibrary: 'bootstrap4',
-                                                                        formart: "yyy-mm-dd",
-                                                                        autoclose:true
-                                                                    });
-                                                    </script>
-                                                </div>
-                                            </div>
-                                            <table id="invoice-item-table"
-                                                class="table table-bordered table-responsive">
-                                                <tr>
-                                                    <th scope="col">Sr No.</th>
-                                                    <th scope="col">Item Name</th>
-                                                    <th scope="col">Quantity</th>
-                                                    <th scope="col">price</th>
-                                                    <th scope="col">Actual Amt.</th>
-                                                    <th scope="col" colspan="2">Tax1 (%)</th>
-                                                    <th scope="col" colspan="2">Tax2 (%)</th>
-                                                    <th scope="col" colspan="2">Tax3 (%)</th>
-                                                    <th scope="col" colspan="2">Total</th>
-                                                    <th scope="col" colspan="2"></th>
-                                                </tr>
-                                                <tr>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th>Rate</th>
-                                                    <th>Amt.</th>
-                                                    <th>Rate</th>
-                                                    <th>Amt.</th>
-                                                    <th>Rate</th>
-                                                    <th>Amt.</th>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="sr_no">1</span></td>
-                                                    <td>
-                                                        <input type="text" name="item_name[]" id="item_name1"
-                                                            placeholder="Enter Item Name" required data-srno="1"
-                                                            class="form-control input-sm">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" name="item_quantity[]" id="item_quantity1"
-                                                            placeholder="Enter Item quantity" required data-srno="1"
-                                                            class="form-control input-sm number_only order_item_quantity">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" name="item_price[]" id="item_price1"
-                                                            placeholder="Enter Item price" required data-srno="1"
-                                                            class="form-control input-sm number_only order_item_price">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" name="item_actual_amount[]"
-                                                            id="item_actual_amount1" required data-srno="1" readonly
-                                                            required class="form-control input-sm item_actual_amount">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" name="item_tax1_rate[]" id="item_tax1_rate1"
-                                                            required data-srno="1" required
-                                                            class="form-control input-sm number_only item_tax1_rate">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" name="item_tax1_amount[]"
-                                                            id="item_tax1_amount1" required data-srno="1" readonly
-                                                            required
-                                                            class="form-control input-sm order_item_tax1_amount">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" name="item_tax2_rate[]" id="item_tax2_rate1"
-                                                            required data-srno="1" required
-                                                            class="form-control input-sm number_only item_tax2_rate">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" name="item_tax2_amount[]"
-                                                            id="item_tax2_amount1" required data-srno="1" readonly
-                                                            required
-                                                            class="form-control input-sm order_item_tax2_amount">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" name="item_tax3_rate[]" id="item_tax3_rate1"
-                                                            required data-srno="1" required
-                                                            class="form-control input-sm number_only item_tax3_rate">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" name="item_tax3_amount[]"
-                                                            id="item_tax3_amount1" required data-srno="1" readonly
-                                                            required
-                                                            class="form-control input-sm order_item_tax3_amount">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" name="item_final_amount[]"
-                                                            id="item_final_amount1" required data-srno="1" readonly
-                                                            required class="form-control input-sm item_final_amount">
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <div align="center">
-                                                <button type="button" class="add_row btn-primary btn btn-xs"
-                                                    id="add_row">+</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="right"><b>Total</td>
-                                        <td align="right"><b><span id="final_total_amt"></span></br></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" align="center">
-                                            <input type="hidden" class="total_item" id="total_item" value="1">
-                                            <input type="submit" name="create_invoice" id="create_invoice"
-                                                value="Create Invoice" class="btn btn-success">
-                                        </td>
-
-                                    </tr>
-                                </table>
-
-                            </div>
-                        </form>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
-                    <script>
-                        $(document).ready(function(){
-                            const final_total_amt = $('#final_total_amount').text();
-                            let count = 1;
-                            $(document).on('click', '#add_row', function(){
-                                count = count + 1;
-                                $('#total_item').val(count);
-                                var html_code = '';
-                                html_code += '<tr id="row_id_'+count+'">';
-                                html_code += '<td><span id="sr_no">'+count+'</span></td>'
-                                html_code +='<td> <input type="text" name="item_name[]" id="item_name1'+count+'" class="form-control input-sm" placeholder="Enter Item Name"></td>'; 
-                                html_code += '<td><input type="text" name="item_quantity[]" id="item_quantity'+count+'" placeholder="Enter Item quantity" required data-srno="'+count+'" class="form-control input-sm number_only order_item_quantity"></td>';
-                                html_code += '<td><input type="text" name="item_price[]" id="item_price'+count+'" placeholder="Enter Item price" required data-srno="'+count+'" class="form-control input-sm number_only order_item_price"></td>';
-                                html_code += '<td><input type="text" name="item_actual_amount[]" id="item_actual_amount'+count+'" required data-srno="'+count+'" readonly required class="form-control input-sm item_actual_amount"></td>';
-                                html_code += '<td><input type="text" name="item_tax1_rate[]" id="item_tax1_rate'+count+'" required data-srno="'+count+'" required class="form-control input-sm number_only item_tax1_rate"></td>';
-                                html_code += '<td><input type="text" name="item_tax1_amount[]" id="item_tax1_amount'+count+'" required data-srno="'+count+'" readonly required class="form-control input-sm order_item_tax1_amount"></td>';
-                                html_code += '<td><input type="text" name="item_tax2_rate[]" id="item_tax2_rate'+count+'" required data-srno="'+count+'" required class="form-control input-sm number_only item_tax2_rate"></td>';
-                                html_code += '<td><input type="text" name="item_tax2_amount[]" id="item_tax2_amount'+count+'" required data-srno="'+count+'" readonly required class="form-control input-sm order_item_tax2_amount"></td>';
-                                html_code += '<td><input type="text" name="item_tax3_rate[]" id="item_tax3_rate'+count+'" required data-srno="'+count+'" required class="form-control input-sm number_only item_tax3_rate"></td>';
-                                html_code += '<td><input type="text" name="item_tax3_amount[]" id="item_tax3_amount'+count+'" required data-srno="'+count+'" readonly required class="form-control input-sm order_item_tax3_amount"></td>';
-                                html_code += '<td><input type="text" name="item_final_amount[]" id="item_final_amount'+count+'" required data-srno="'+count+'" readonly required class="form-control input-sm item_final_amount"></td>';
-                                html_code += '<td><button type="button" name="remove_row" class="remove_row btn btn-danger btn-xs" id="'+count+'">X</button></td></tr>';
-                                $('#invoice-item-table').append(html_code);
-                            });
-                            $(document).on('click', '.remove_row', function(){
-                             var row_id = $(this).attr("id");
-                             var item_total_amount = $('#item_final_amount'+row_id).val();
-                             var final_amount = $('#final_total_amt').text();
-                             var result_amout = parseFloat(final_amount) - parseFloat(item_total_amount);
-                             $('#final_total_amount').text(result_amout);
-                             $('#row_id_'+row_id).remove();
-                              count --;
-                             $('#total_item').val(count);
-                            });
-                            function cal_final_total(count){
-                                // event.preventDefault();
-                                var final_item_total = 0;
-                                for(j=0; j<=count; j++){
-                                    var quantity = 0;
-                                    var price = 0;
-                                    var actual_amount = 0;
-                                    var tax1_rate = 0;
-                                    var tax1_amount = 0;
-                                    var tax2_rate = 0;
-                                    var tax2_amount = 0;
-                                    var tax3_rate = 0;
-                                    var tax3_amount = 0;
-                                    var item_total = 0;
-                                      quantity = $('#item_quantity' +j).val();
-                                    if(quantity > 0){
-                                        price = $('#item_price' +j).val();
-                                        if (price > 0) {
-                                            actual_amount = parseFloat(quantity) * parseFloat(price);
-                                            $('#item_actual_amount'+j).val(actual_amount);
-                                            tax1_rate = $('#item_tax1_rate' +j).val();
-                                            if (tax1_rate > 0) {
-                                                tax1_amount = parseFloat(actual_amount) * parseFloat(tax1_rate)/100;
-                                                $('#item_tax1_amount' +j).val(tax1_amount);
-                                            }
-                                            tax2_rate = $('#item_tax2_rate' +j).val();
-                                            if (tax2_rate > 0) {
-                                                tax2_amount = parseFloat(actual_amount) * parseFloat(tax2_rate)/100;
-                                                $('#item_tax2_amount' +j).val(tax2_amount);
-                                            }
-                                            tax3_rate = $('#item_tax3_rate' +j).val();
-                                            if (tax3_rate > 0) {
-                                                tax3_amount = parseFloat(actual_amount) * parseFloat(tax3_rate)/100;
-                                                $('#item_tax3_amount' +j).val(tax3_amount);
-                                            }
-                                            item_total = parseFloat(actual_amount) + parseFloat(tax1_amount) + parseFloat(tax2_amount) + parseFloat(tax3_amount);
-                                            final_item_total = parseFloat(final_item_total) + parseFloat(item_total);
-                                            $('#item_final_amount').val(item_total);
-                                        }
-                                    }
-
-                                }
-                                $('#final_total_amt').text(final_item_total);
-                            }
-                            $(document).on('blur', '.order_item_price', function(){
-                                cal_final_total(count);
-                            });
-                            $(document).on('blur', '.item_tax1_rate', function(){
-                                cal_final_total(count); 
-                            })
-                            $(document).on('blur', '.item_tax2_rate', function(){
-                                cal_final_total(count); 
-                            });
-                            $(document).on('blur', '.item_tax3_rate', function(){
-                                cal_final_total(count); 
-                            });
-                            $('#create_invoice').click(function(){
-                                if ($.trim($('#order_receiver_name').val()).length == 0) {
-                                    alert('please enter receiver name');
-                                    return false;
-                                }
-                                if ($.trim($('#order_no').val()).length == 0) {
-                                    alert('please invoice number is required');
-                                }
-                                if ($.trim($('#order_date').val()).length == 0) {
-                                    alert('Invoice date is required');
-                                    return false;
-                                }
-                                for (let no = 0; no <= count; no++) {
-                                    if ($.trim($('#item_name' +no).val()).length ==0) {
-                                        alert(" invoice item name is required");
-                                        $('#item_name'+no).focus();
-                                        return false;
-                                    }
-                                    if ($.trim($('#item_quantity' + no).val()).length ==0) {
-                                        alert(" invoice item name is required");
-                                        $('#item_quantity' + no).focus();
-                                        return false;
-                                    }
-                                    if ($.trim($('#item_price' +no).val()).length ==0) {
-                                        alert(" invoice item name is required");
-                                        $('#item_price'+no).focus();
-                                        return false;
-                                    }
-                                    
-                                }
-                                $('#invoice_form').submit();
-
-                            });
-                        });
-                    </script>
-
                 </div>
-                <!-- /.container-fluid -->
+            </div>
+
+            <!-- Content Row -->
+            <div class="row">
+
 
             </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; moses invoice 2019</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
 
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; invoice system 2019</span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
@@ -666,38 +430,64 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    {{-- <a class="btn btn-primary" href="login.html">Logout</a> --}}
-                    <a class="dropdown-item btn btn-primary" href="{{ route('logout') }}" onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="/vendor/jquery/jquery.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plu/gin JavaScript-->
-    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom s/cripts for all pages-->
-    <script src="/js/sb-admin-2.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
 
-    <!-- Page lev/el plugins -->
-    <script src="/vendor/chart.js/Chart.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
 
-    <!-- Page lev/el custom scripts -->
-    <script src="/js/demo/chart-area-demo.js"></script>
-    <script src="/js/demo/chart-pie-demo.js"></script>
+    <!-- Page level custom scripts -->
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
+    <script type="text/javascript">
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    $(document).ready( function () {
+          
+        //   var table = $('.data-table').DataTable({
+        //       processing: true,
+        //       serverSide: true,
+        //       ajax: "{{ route('create') }}",
+        //       columns: [
+        //           {data:'id', name:'id'},
+        //           {data:'name', name:'name'},
+        //           {data:'email', name:'email'},
+        //         //   {data: 'order_no', name: 'order_no'},
+        //         //   {data: 'order_date', name: 'order_date'},
+        //         //   {data: 'order_receiver_name', name: 'order_receiver_name'},
+        //         //   {data: 'order_total_after_tax', name: 'order_total_after_tax'},
+        //           {data: 'action', name: 'action', orderable: false, searchable: false},
+        //       ]
+        $('#user_table').DataTable({
+         processing: true,
+         serverSide: true,
+         ajax: {
+          url: "{{route('create')}}",
+          type: 'GET',
+         },
+         columns: [
+                  {data: 'id', name: 'id'},
+                  { data: 'name', name: 'name' },
+                  { data: 'email', name: 'email' },
+               ]
+      });
+          
+    });
+        
+      
 
 </body>
 
 </html>
-{{-- @endsection --}}
