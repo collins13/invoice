@@ -1,3 +1,4 @@
+<?php $glob = \Invoice\Invoice::first();?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,7 +18,9 @@
 
   <body class="app sidebar-mini">
     <!-- Navbar-->
-    <header class="app-header"><a class="app-header__logo" href="index.html">Estein Solutions</a>
+    <header class="app-header"><a class="app-header__logo" href="index.html">
+      {{$glob->appName}}
+    </a>
       <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <!-- Navbar Right Menu-->
       <ul class="app-nav">

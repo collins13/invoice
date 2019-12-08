@@ -72,7 +72,7 @@
     </div>
 </div> --}}
 {{-- @endsection --}}
-
+<?php $glob= \Invoice\Invoice::first();?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -83,7 +83,7 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <!-- Font-icon css-->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <title>Login - Estein Solutions</title>
+  <title>Login - {{$glob->appName}}</title>
   </head>
   <body>
     <section class="material-half-bg">
@@ -91,7 +91,7 @@
     </section>
     <section class="login-content">
       <div class="logo">
-        <h1>Estein Solutions</h1>
+      <h1>{{$glob->appName}}</h1>
       </div>
       <div class="login-box">
         <form class="login-form" action="{{ route('login') }}" method="POST">
