@@ -16,7 +16,7 @@
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.8.0",
         "yajra/laravel-datatables-oracle": "~9.0",
-        "zizaco/entrust": "5.2.x-dev"
+        "zizaco/entrust": "dev-master"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

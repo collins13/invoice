@@ -10,6 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// entrust
+Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function() {
+    Route::resource('roles','RoleController');
+    Route::resource('users','UserController');
+});
+Route::resource('roles','RoleController');
+Route::resource('users','UserController');
+// endendtrust
 Route::get('i-logout', 'HomeController@logout')->name('i-logout');
 Route::get('/', function () {
     return view('auth.login');
@@ -24,7 +32,7 @@ Route::get('/backup', function () {
 
 Auth::routes();
 
-Route::get('/home', 'OrderController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/create', 'OrderController@store')->name('create');
 // Route::post('/create', 'OrderController@store')->name('form.store');
 

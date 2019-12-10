@@ -1,10 +1,10 @@
-<?php $glob = \Invoice\Invoice::first();?>
+{{-- <?php $glob = \Invoice\Invoice::first();?> --}}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- Twitter meta-->
     <!-- Open Graph Meta-->
-    <title>{{$glob->appName}}</title>
+    {{-- <title>{{$glob->appName}}</title> --}}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,7 +19,7 @@
   <body class="app sidebar-mini">
     <!-- Navbar-->
     <header class="app-header"><a class="app-header__logo" href="index.html">
-      {{$glob->appName}}
+      {{-- {{$glob->appName}} --}}
     </a>
       <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <!-- Navbar Right Menu-->
