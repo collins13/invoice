@@ -27,3 +27,11 @@ Auth::routes();
 Route::get('/home', 'OrderController@index')->name('home');
 Route::post('/create', 'OrderController@store')->name('create');
 // Route::post('/create', 'OrderController@store')->name('form.store');
+
+Route::get('/user', 'ProfileController@user');
+
+Route::post('/user/profile', 'ProfileController@createProfile');
+
+Route::post('/user/profile/{id}', 'ProfileController@editProfile');
+
+Route::post('/user/profile', 'ProfileController@addUser');
