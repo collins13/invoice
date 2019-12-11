@@ -93,7 +93,7 @@
             </div>
         @endif
 
-        <form class="form-horizontal" role="form" method="POST" action="{{ url('admin/users') }}">
+        <form class="form-horizontal" role="form" method="POST" action="{{ route('store') }}">
             {{ csrf_field() }}
 <div class="row">
     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }} col-md-6">
@@ -120,7 +120,7 @@
             </span>
             @endif
     </div>
-    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} col-md-6">
+    {{-- <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} col-md-6">
         <label for="password" class="control-label">Password:</label>
             <input id="password" type="password" class="form-control" name="password" required autofocus>
             @if ($errors->has('password'))
@@ -139,7 +139,7 @@
                 <strong>{{ $errors->first('password_confirmation') }}</strong>
             </span>
             @endif
-    </div>
+    </div> --}}
 </div>
 <div class="form-group{{ $errors->has('roles') ? ' has-error' : '' }}">
     <label for="roles" class="col-md-4 control-label">Roles</label>

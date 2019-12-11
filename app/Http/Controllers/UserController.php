@@ -9,6 +9,8 @@ use Invoice\User;
 use Invoice\Role;
 use DB;
 use Hash;
+use Session;
+use Invoice\Mail\Users;
 
 class UserController extends Controller
 {
@@ -44,16 +46,27 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
+            // 'password' => 'required|confirmed|min:6',
             'roles' => 'required'
         ]);
-        $input = $request->only('name', 'email', 'password');
-        $input['password'] = Hash::make($input['password']); //Hash password
-        $user = User::create($input); //Create User table entry
+        $password = str_random(8);
+
+        $users = [
+            'email' => $request->email,
+            'password' => $password,
+            'name'=>$request->name,
+        ];
+        Mail::to([$request->email])->send(new Users($users));
+        $input = $request->only('name', 'email');
+        $password = Hash::make($password); //Hash password
+        $user = User::create(['name'=>$request->name, 'email'=>$request->email, 'password'=>$password]); //Create User table entry
         //Attach the selected Roles
+        // dd($user);
+       
         foreach ($request->input('roles') as $key => $value) {
             $user->attachRole($value);
         }
+        Session::flash('success', 'user created successfully');
         return redirect()->route('users.index')
             ->with('success','User created successfully');
     }

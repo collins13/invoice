@@ -25,7 +25,11 @@ Route::get('/', function () {
 Route::get('/main', function () {
     return view('layouts.main');
 });
+// Route::get('/email', function () {
+//     return view('mails.users');
+// });
 Route::get('/index', 'OrderController@get_data')->name('index');
+Route::post('/store', 'UserController@store')->name('store');
 Route::get('/backup', function () {
     return view('pages.backup');
 });

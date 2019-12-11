@@ -102,7 +102,8 @@
             <li><a class="treeview-item" href=""><i class="icon fa fa-circle-o"></i> Rate</a></li>
             <li><a class="treeview-item" href=""><i class="icon fa fa-circle-o"></i> Tax</a></li>
             <li><a class="treeview-item" href=""><i class="icon fa fa-circle-o"></i> Profile</a></li>
-            <li><a class="treeview-item" href="/user"><i class="icon fa fa-circle-o"></i> User management</a></li>
+          <li><a class="treeview-item" href="{{route('roles.index')}}"><i class="icon fa fa-circle-o"></i> Roles</a></li>
+          <li><a class="treeview-item" href="{{route('users.index')}}"><i class="icon fa fa-circle-o"></i> User management</a></li>
           </ul>
         </li>
         <li><a class="app-menu__item" href=""><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Docs</span></a></li>
