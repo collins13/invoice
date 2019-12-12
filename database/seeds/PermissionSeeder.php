@@ -53,65 +53,65 @@ class PermissionSeeder extends Seeder
                 'description' => 'Delete User'
             ],
             [
-                'name' => 'client-create',
-                'display_name' => 'Create Client',
-                'description' => 'Create New Client'
+                'name' => 'invoice-create',
+                'display_name' => 'Create invoice',
+                'description' => 'Create New invoice'
             ],
             [
-                'name' => 'client-list',
-                'display_name' => 'Display Client Listing',
-                'description' => 'List All Clients'
+                'name' => 'invoice-list',
+                'display_name' => 'Display invoice Listing',
+                'description' => 'List All invoice'
             ],
             [
-                'name' => 'client-update',
-                'display_name' => 'Update Client',
-                'description' => 'Update Client Information'
+                'name' => 'invoice-update',
+                'display_name' => 'Update invoice',
+                'description' => 'Update invoice Information'
             ],
             [
-                'name' => 'client-delete',
-                'display_name' => 'Delete Client',
-                'description' => 'Delete Client Information'
+                'name' => 'invoice-delete',
+                'display_name' => 'Delete invoice',
+                'description' => 'Delete invoice Information'
             ],
-            [
-                'name' => 'job-create',
-                'display_name' => 'Create Job',
-                'description' => 'Create New Job'
-            ],
-            [
-                'name' => 'job-list',
-                'display_name' => 'Display Job Listing',
-                'description' => 'List All Job'
-            ],
-            [
-                'name' => 'job-update',
-                'display_name' => 'Update Job',
-                'description' => 'Update Job Information'
-            ],
-            [
-                'name' => 'job-delete',
-                'display_name' => 'Delete Job',
-                'description' => 'Delete Job Information'
-            ],
-            [
-                'name' => 'candidate-create',
-                'display_name' => 'Create Candidate',
-                'description' => 'Create New Candidate'
-            ],
-            [
-                'name' => 'candidate-list',
-                'display_name' => 'Display Candidate Listing',
-                'description' => 'List All Candidate'
-            ],
-            [
-                'name' => 'candidate-update',
-                'display_name' => 'Update Candidate',
-                'description' => 'Update Candidate Information'
-            ],
-            [
-                'name' => 'candidate-delete',
-                'display_name' => 'Delete Candidate',
-                'description' => 'Delete Candidate Information'
-            ]
+            // [
+            //     'name' => 'job-create',
+            //     'display_name' => 'Create Job',
+            //     'description' => 'Create New Job'
+            // ],
+            // [
+            //     'name' => 'job-list',
+            //     'display_name' => 'Display Job Listing',
+            //     'description' => 'List All Job'
+            // ],
+            // [
+            //     'name' => 'job-update',
+            //     'display_name' => 'Update Job',
+            //     'description' => 'Update Job Information'
+            // ],
+            // [
+            //     'name' => 'job-delete',
+            //     'display_name' => 'Delete Job',
+            //     'description' => 'Delete Job Information'
+            // ],
+            // [
+            //     'name' => 'candidate-create',
+            //     'display_name' => 'Create Candidate',
+            //     'description' => 'Create New Candidate'
+            // ],
+            // [
+            //     'name' => 'candidate-list',
+            //     'display_name' => 'Display Candidate Listing',
+            //     'description' => 'List All Candidate'
+            // ],
+            // [
+            //     'name' => 'candidate-update',
+            //     'display_name' => 'Update Candidate',
+            //     'description' => 'Update Candidate Information'
+            // ],
+            // [
+            //     'name' => 'candidate-delete',
+            //     'display_name' => 'Delete Candidate',
+            //     'description' => 'Delete Candidate Information'
+            // ]
         ];
         foreach ($permission as $key => $value) {
             Permission::create($value);

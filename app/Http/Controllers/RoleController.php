@@ -5,9 +5,15 @@ namespace Invoice\Http\Controllers;
 use Illuminate\Http\Request;
 use Invoice\Role;
 use Invoice\Permission;
+use Illuminate\Support\Facades\Session;
 use DB;
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        // $this->middleware(['role:admin']);
+    }
       /**
      * Display a listing of the resource.
      *
@@ -15,9 +21,10 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
-        $roles = Role::orderBy('id','DESC')->paginate(5);
-        return view('roles.index',compact('roles'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        $roles = Role::all();
+        $permissions = Permission::pluck('display_name','id');
+        return view('roles.index',compact('roles', 'permissions'));
+            // ->with('i', ($request->input('page', 1) - 1) * 5);
     }
     /**
      * Show the form for creating a new resource.

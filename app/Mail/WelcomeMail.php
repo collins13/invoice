@@ -6,22 +6,21 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Invoice\User;
 
-class Users extends Mailable
+class WelcomeMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $users;
+
+    public $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($users)
+    public function __construct($user)
     {
-        dd($users);
-        $this->users = $users;
+        $this->user = $user;
     }
 
     /**
