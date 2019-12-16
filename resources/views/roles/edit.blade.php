@@ -26,8 +26,6 @@
                                 </ul>
                             </div>
                         @endif
-
-
                         <form class="form-horizontal" role="form" method="POST"
                               action="{{ url('roles/'.$role->id) }}">
                             {{ csrf_field() }}
@@ -36,7 +34,7 @@
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                 <label for="display_name" class="col-md-4 control-label">Display Name</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <input id="display_name" type="text" class="form-control" name="display_name"
                                            value="{{$role->display_name}}"
                                            required autofocus>
@@ -51,7 +49,7 @@
                             <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                                 <label for="description" class="col-md-4 control-label">Description</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <textarea rows="4" cols="50" name="description" id="description"
                                               class="form-control">{{$role->description}}</textarea>
 
@@ -83,14 +81,15 @@
 
 
                             <div class="form-group">
-                                <div class="col-md-8 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Update
-                                    </button>
-
-                                    <a class="btn btn-link" href="{{ url('admin/roles') }}">
-                                        Cancel
-                                    </a>
+                                <div class="col-md-12">
+                                    <div class="float-right">
+                                        <a class="btn btn-secondary" href="{{ url('admin/roles') }}">
+                                            Cancel
+                                        </a>
+                                        <button type="submit" class="btn btn-primary">
+                                            Update
+                                        </button>
+                                    </div>                                   
                                 </div>
                             </div>
                         </form>
