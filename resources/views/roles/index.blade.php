@@ -31,40 +31,46 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
-                    <table class="table table-striped table-bordered table-condensed" id="role-table">
-                        <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        @foreach ($roles as $key => $role)
-
-                            <tr class="list-users">
-                                <td>{{ $role->id }}</td>
-                                <td>{{ $role->display_name }}</td>
-                                <td>{{ $role->description }}</td>
-                                <td class="float-right">
-                                    <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Show</a>
-                                    <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
-
-                                    <form action="{{ url('roles/'.$role->id) }}" method="POST" style="display: inline-block">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-
-                                        <button type="submit" id="delete-task-{{ $role->id }}" class="btn btn-danger">
-                                            <i class="fa fa-btn fa-trash"></i>Delete
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                    <div class="card">
+                        <h5 class="card-header">User Roles </h5>
+                        <div class="card-body">
+                            <table class="table table-striped table-bordered table-condensed" id="role-table">
+                                <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+        
+                                @foreach ($roles as $key => $role)
+        
+                                    <tr class="list-users">
+                                        <td>{{ $role->id }}</td>
+                                        <td>{{ $role->display_name }}</td>
+                                        <td>{{ $role->description }}</td>
+                                        <td class="float-right">
+                                            <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Show</a>
+                                            <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
+        
+                                            <form action="{{ url('roles/'.$role->id) }}" method="POST" style="display: inline-block">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+        
+                                                <button type="submit" id="delete-task-{{ $role->id }}" class="btn btn-danger">
+                                                    <i class="fa fa-btn fa-trash"></i>Delete
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                      </div>
+                    
                     
                 </div>
             </div>

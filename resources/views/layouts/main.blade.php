@@ -92,9 +92,9 @@
         <li><a class="app-menu__item active" href=""><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Invoice</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
-            <li><a class="treeview-item" href=""><i class="icon fa fa-circle-o"></i> All Invoice</a></li>
-            <li><a class="treeview-item" href="" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i> Make Payments</a></li>
-            <li><a class="treeview-item" href=""><i class="icon fa fa-circle-o"></i> Check Reports</a></li>
+          <li><a class="treeview-item" href="{{route('index')}}"><i class="icon fa fa-circle-o"></i> All Invoice</a></li>
+            <li><a class="treeview-item" href="#" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i> Make Payments</a></li>
+            <li><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Check Reports</a></li>
           </ul>
         </li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-cog"></i><span class="app-menu__label">Company Settings</span><i class="treeview-indicator fa fa-angle-right"></i></a>
@@ -103,7 +103,7 @@
           <li><a class="treeview-item" href="{{route('roles.index')}}"><i class="icon fa fa-circle-o"></i> Roles</a></li>
           @role('admin')
           <li><a class="treeview-item" href="{{route('users.index')}}"><i class="icon fa fa-circle-o"></i> User management</a></li>
-          @endrole
+          @endrole}
           </ul>
         </li>
       </ul>

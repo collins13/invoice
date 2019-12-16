@@ -9,10 +9,10 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 // entrust]
-    Route::resource('roles','RoleController');
-    Route::resource('users','UserController');
+Route::resource('roles', 'RoleController');
+Route::resource('users', 'UserController');
 
 Route::get('i-logout', 'HomeController@logout')->name('i-logout');
 Route::get('/', function () {
@@ -43,3 +43,7 @@ Route::post('/user/profile', 'ProfileController@createProfile');
 Route::post('/user/profile/{id}', 'ProfileController@editProfile');
 
 Route::post('/user/profile', 'ProfileController@addUser');
+
+Route::get('/customer/print-pdf', [
+    'as' => 'customer.printpdf',
+    'uses' => 'CustomerController@printPDF']);

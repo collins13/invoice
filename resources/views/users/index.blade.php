@@ -33,49 +33,54 @@
                         <p>{{ $message }}</p>
                     </div>
                     @endif
-                    <table class="table table-striped table-bordered table-condensed" id="users-table">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Roles</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            @foreach ($users as $user)
-
-                            <tr class="list-users">
-                                <td>{{ $user->id }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>
-                                    @if(!empty($user->roles))
-                                    @foreach($user->roles as $role)
-                                    <label class="label label-success">{{ $role->display_name }}</label>
+                    <div class="card">
+                        <h5 class="card-header">Users</h5>
+                        <div class="card-body">
+                            <table class="table table-striped table-bordered table-condensed" id="users-table">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Roles</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+        
+                                    @foreach ($users as $user)
+        
+                                    <tr class="list-users">
+                                        <td>{{ $user->id }}</td>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>
+                                            @if(!empty($user->roles))
+                                            @foreach($user->roles as $role)
+                                            <label class="label label-success">{{ $role->display_name }}</label>
+                                            @endforeach
+                                            @endif
+                                        </td>
+                                        <td class="float-right">
+                                            <a class="btn btn-info" id="edit-uder" href="{{ route('users.show',$user->id) }}">Show</a>
+                                            <a class="btn btn-primary" id="edit-user" href="{{ route('users.edit',$user->id) }}">Edit</a>
+        
+                                            <form action="{{ url('users/'.$user->id) }}" method="POST"
+                                                style="display: inline-block">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+        
+                                                <button type="submit" id="delete-task-{{ $user->id }}" class="btn btn-danger">
+                                                    <i class="fa fa-btn fa-trash"></i>Delete
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
                                     @endforeach
-                                    @endif
-                                </td>
-                                <td class="float-right">
-                                    <a class="btn btn-info" id="edit-uder" href="{{ route('users.show',$user->id) }}">Show</a>
-                                    <a class="btn btn-primary" id="edit-user" href="{{ route('users.edit',$user->id) }}">Edit</a>
-
-                                    <form action="{{ url('users/'.$user->id) }}" method="POST"
-                                        style="display: inline-block">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-
-                                        <button type="submit" id="delete-task-{{ $user->id }}" class="btn btn-danger">
-                                            <i class="fa fa-btn fa-trash"></i>Delete
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                </tbody>
+                            </table>
+                        </div>
+                      </div>
                 </div>
             </div>
         </div>

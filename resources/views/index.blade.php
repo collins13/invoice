@@ -2,44 +2,52 @@
 @section('content')
 <div class="app-title">
   <div>
-    <h1><i class="fa fa-dashboard"></i> Dashboard</h1>
+    <h1><i class="fa fa-dashboard"></i> Invoice</h1>
   </div>
   <ul class="app-breadcrumb breadcrumb">
     <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
     <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
   </ul>
 </div>
-<a href="#" class="btn btn-primary" id="create-invoice">Create New Invoice</a><hr>
-<table class="table" id="invoice-table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Invoice No.</th>
-      <th scope="col">Invoice Date.</th>
-      <th scope="col">Receiver Name.</th>
-      <th scope="col">Invoice Total.</th>
-      <th scope="col">PDF.</th>
-      <th scope="col">Edit.</th>
-      <th scope="col">Delete.</th>
-      <th scope="col">Send.</th>
-    </tr>
-  </thead>
-  <tbody>
-      @foreach ($invoices as $invoice)
-    <tr>
-      <th scope="row">{{$invoice->id}}</th>
-      <td>{{$invoice->order_no}}</td>
-      <td>{{$invoice->order_date}}</td>
-      <td>{{$invoice->order_receiver_name}}</td>
-      <td>{{$invoice->order_total_after_tax}}</td>
-      <td><a href=""><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a></td>
-      <td><a href="#"><i class="fa fa-pencil"></i></a></td>
-      <td><a href=""><i class="fa fa-trash" aria-hidden="true" style="color:red"></i></a></td>
-      <td><a href=""><i class="fa fa-paper-plane" aria-hidden="true"></i></a></td>
-    </tr>
-    @endforeach
-  </tbody>
-</table>
+<div class="card">
+    <div class="card-header bg-primary">
+      All Invoice
+    </div>
+    <div class="card-body">
+        <a href="#" class="btn btn-primary" id="create-invoice">Create New Invoice</a><hr>
+        <table class="table" id="invoice-table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Invoice No.</th>
+              <th scope="col">Invoice Date.</th>
+              <th scope="col">Receiver Name.</th>
+              <th scope="col">Invoice Total.</th>
+              <th scope="col">PDF.</th>
+              <th scope="col">Edit.</th>
+              <th scope="col">Delete.</th>
+              <th scope="col">Send.</th>
+            </tr>
+          </thead>
+          <tbody>
+              @foreach ($invoices as $invoice)
+            <tr>
+              <th scope="row">{{$invoice->id}}</th>
+              <td>{{$invoice->order_no}}</td>
+              <td>{{$invoice->order_date}}</td>
+              <td>{{$invoice->order_receiver_name}}</td>
+              <td>{{$invoice->order_total_after_tax}}</td>
+              <td><a href=""><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a></td>
+              <td><a href="#"><i class="fa fa-pencil"></i></a></td>
+              <td><a href=""><i class="fa fa-trash" aria-hidden="true" style="color:red"></i></a></td>
+              <td><a href=""><i class="fa fa-paper-plane" aria-hidden="true"></i></a></td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+    </div>
+  </div>
+
 <style>
 .modal {
     display: none;
