@@ -87,11 +87,11 @@
 
 
                         <div class="form-group{{ $errors->has('roles') ? ' has-error' : '' }}">
-                            <label for="roles" class="col-md-4 control-label">Roles</label>
+                            <label for="roles" class="control-label">Roles</label>
 
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6"> --}}
 
-                                <select id="role" name="roles[]" multiple style="width:700px">
+                                <select class="form-group form-control" id="role" name="roles[]" multiple>
                                     @foreach ($roles as $role)
                                         <option value="{{$role->id}}" {{in_array($role->id, $userRoles) ? "selected" : null}}>
                                             {{$role->display_name}}
@@ -104,19 +104,18 @@
                                     <strong>{{ $errors->first('roles') }}</strong>
                                 </span>
                                 @endif
-                            </div>
+                            {{-- </div> --}}
                         </div>
 
 
                         <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Update
-                                </button>
-
-                                <a class="btn btn-link" href="{{ url('admin/roles') }}">
+                            <div class="float-right">
+                                <a class="btn btn-secondary" href="{{ url('admin/roles') }}">
                                     Cancel
                                 </a>
+                                <button type="submit" class="btn btn-primary">
+                                    Update
+                                </button>                                
                             </div>
                         </div>
                     </form>

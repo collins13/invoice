@@ -13,7 +13,17 @@
     <div class="row">
         <div class="col-md-12 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Role Management</div><hr>
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-6">
+                            Role Management
+                        </div>
+                        <div class="col-md-6">
+                            <a href="#" id="create-role" class="btn btn-success float-right">New Role</a>
+                        </div>
+                    </div>
+                </div>
+                <hr>
 
                 <div class="panel-body">
                     @if ($message = Session::get('success'))
@@ -21,7 +31,6 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
-                    <a href="#" id="create-role" class="btn btn-success">New Role</a><hr>
                     <table class="table table-striped table-bordered table-condensed" id="role-table">
                         <thead>
                         <tr>
@@ -39,7 +48,7 @@
                                 <td>{{ $role->id }}</td>
                                 <td>{{ $role->display_name }}</td>
                                 <td>{{ $role->description }}</td>
-                                <td>
+                                <td class="float-right">
                                     <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Show</a>
                                     <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
 
@@ -115,10 +124,10 @@
                   </span>
                   @endif
           </div>
-          <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }} col-md-6">
+          <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }} col-md-12">
               <label for="email" class="control-label">Description</label>
 
-                  <textarea rows="4" cols="50" name="description" id="description" class="form-control">{{ old('description') }}</textarea>
+                  <textarea name="description" id="description" class="form-control">{{ old('description') }}</textarea>
 
                   @if ($errors->has('description'))
                       <span class="help-block">
@@ -149,22 +158,19 @@
 
           <div class="form-group">
               <div class="col-md-8 col-md-offset-4">
-                  <button type="submit" class="btn btn-primary">
-                      Save
-                  </button>
-
-                  <a class="btn btn-link" href="{{ url('admin/roles') }}">
-                      Cancel
-                  </a>
               </div>
           </div>
-      </form>
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <a class="btn btn-secondary" href="{{ url('admin/roles') }}">
+            Cancel
+          </a>
+          <button type="submit" class="btn btn-primary">
+            Save
+          </button>
         </div>
+    </form>
       </div>
     </div>
   </div>

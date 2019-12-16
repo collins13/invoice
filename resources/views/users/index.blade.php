@@ -13,11 +13,18 @@
     <div class="row">
         <div class="col-md-12 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">User Management</div>
-                <hr>
-                @role('admin')
-                <a href="#" class="btn btn-success" id="new-user">New User</a>
-                @endrole
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-6">
+                            User Management
+                        </div>
+                        <div class="col-md-6">
+                            @role('admin')
+                            <a href="#" class="btn btn-success float-right" id="new-user">New User</a>
+                            @endrole
+                        </div>
+                    </div>
+                </div>
                 <hr>
 
                 <div class="panel-body">
@@ -51,7 +58,7 @@
                                     @endforeach
                                     @endif
                                 </td>
-                                <td>
+                                <td class="float-right">
                                     <a class="btn btn-info" id="edit-uder" href="{{ route('users.show',$user->id) }}">Show</a>
                                     <a class="btn btn-primary" id="edit-user" href="{{ route('users.edit',$user->id) }}">Edit</a>
 
@@ -148,11 +155,9 @@
                         @endif
                     </div> --}}
             </div>
-            <div class="form-group{{ $errors->has('roles') ? ' has-error' : '' }}">
-                <label for="roles" class="col-md-4 control-label">Roles</label>
-
-                <div class="col-md-10">
-                    <select id="role" name="roles[]" style="width:700px" multiple>
+            <div class="{{ $errors->has('roles') ? ' has-error' : '' }}">
+                <label for="roles" class="control-label">Roles</label>
+                    <select class="form-group form-control" id="role" name="roles[]" multiple>
                         @foreach ($roles as $key => $role)
                         <option value="{{$key}}">{{$role}}</option>
                         @endforeach
@@ -164,7 +169,6 @@
                         <strong>{{ $errors->first('roles') }}</strong>
                     </span>
                     @endif
-                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
